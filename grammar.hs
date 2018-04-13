@@ -68,6 +68,8 @@ evaluate2 :: Sentence -> Bool
 evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounm x2 && isVerb x3
 -}
 
+
+--funções isX
 isDetf :: Palavra -> Bool
 isDetf (Detf x) = elem x detf
 isDetf _ = False
@@ -123,6 +125,11 @@ isConjf_p _ = False
 isConjm_p :: Palavra -> Bool
 isConjm_p (Conjm_p x) = elem x conjm_p
 isConjm_p _ = False
+
+isProp :: Palavra -> Bool
+isProp (Prop x) = elem x prop
+isProp _ = False
+
 
 
 --parses
