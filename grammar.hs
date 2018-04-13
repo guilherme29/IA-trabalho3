@@ -22,6 +22,8 @@ prop = ["para","com"]
 
 data Palavra = Detf String
             | Detm String
+            | Detf_p String
+            | Detm_p String
             | Nounm String
             | Nounm_p String
             | Nounf String
@@ -34,10 +36,11 @@ data Palavra = Detf String
             | Conjm_p String
             | Prop String
 
-
 instance Show Palavra where
   show (Detf x)     = "determiner(" ++ x ++ ")"
   show (Detm x)     = "determiner(" ++ x ++ ")"
+  show (Detf_p x)     = "determiner(" ++ x ++ ")"
+  show (Detm_p x)     = "determiner(" ++ x ++ ")"  
   show (Nounm x)    = "noun(" ++ x ++ ")"
   show (Nounm_p x)  = "noun(" ++ x ++ ")"
   show (Nounf x)    = "noun(" ++ x ++ ")"
@@ -57,7 +60,7 @@ instance Show Sentence where
 parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence (Detf x1) (parseNoun x2) (Verb x3)
 
-{-
+{-  --este bocado de codigo nao esta a ser utilizado para já
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
@@ -81,9 +84,14 @@ isVerb _ = False
 --parses
 parseNoun :: String -> Palavra
 parseNoun x
-  | elem x nounm = Nounm x
-  | elem x nounf = Nounf x
-  | elem x nounm_p = Nounm_p x
-  | elem x nounf_p = Nounf_p x
+    | elem x nounm = Nounm x
+    | elem x nounf = Nounf x
+    | elem x nounm_p = Nounm_p x
+    | elem x nounf_p = Nounf_p x
 
---parseNoun_p :: String -> Palavra
+parseDet :: String -> Palavra
+parseDet x
+    | elem x detf = Detf x
+    | elem x detm = Detm x
+    | elem x detf_p = Detf_p x
+    | elem x detm_p = Detm_p x
