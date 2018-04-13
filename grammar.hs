@@ -58,15 +58,17 @@ instance Show Sentence where
   show (Sentence d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
 
 parse :: [String] -> Sentence
-parse [x1,x2,x3] = Sentence (Detf x1) (parseNoun x2) (Verb x3)
+parse [x1,x2,x3] = Sentence (parseDet x1) (parseNoun x2) (parseVerb x3)
 
-{-  --este bocado de codigo nao esta a ser utilizado para já
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
 evaluate2 :: Sentence -> Bool
-evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounm x2 && isVerb x3
--}
+evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounf x2 && isVerb x3
+--evaluate2 (Sentence x1 x2 x3) = isDetm x1 && isNounm x2 && isVerb x3
+--evaluate2 (Sentence x1 x2 x3) = isDetf_p x1 && isNounf_p x2 && isVerb_p x3
+--evaluate2 (Sentence x1 x2 x3) = isDetm_p x1 && isNounm_p x2 && isVerb_p x3
+
 
 
 --funções isX
