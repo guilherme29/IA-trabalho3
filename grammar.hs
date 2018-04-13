@@ -20,48 +20,57 @@ conjm_p = ["pelos","nos"]
 prop = ["para","com"]
 
 
-
-nomesSingular  = ["menina", "menino"]
-nomesPlural    = ["meninas", "meninos"]
-verbos = ["morreu", "suicidou"]
-
 data Palavra = Detf String
-            | NomeSingular String
-            | NomePlural String
-            | Verbo String
+            | Detm String
+            | Nounm String
+            | Nounm_p String
+            | Nounf String
+            | Nounf_p String
+            | Verb String
+            | Verb_p String
 
 instance Show Palavra where
   show (Detf x) = x
-  show (NomeSingular x) = "NomeSingular(" ++ x ++ ")"
-  show (NomePlural x) = "NomePlural(" ++ x ++ ")"
-  show (Verbo x) = x
+  show (Detm x) = "determiner(" ++ x ++ ")"
+  show (Nounm x) = "noun(" ++ x ++ ")"
+  show (Nounm_p x) = "noun(" ++ x ++ ")"
+  show (Nounf x) = "noun(" ++ x ++ ")"
+  show (Nounf_p x) = "noun(" ++ x ++ ")"
+  show (Verb x) = "verb(" ++ x ++ ")"
+  show (Verb_p x) = "verb(" ++ x ++ ")"
 
 data Sentence = Sentence Palavra Palavra Palavra
 instance Show Sentence where
-  show (Sentence d n v) = "Sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
+  show (Sentence d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
 
 parse :: [String] -> Sentence
-parse [x1,x2,x3] = Sentence (Detf x1) (parseNome x2) (Verbo x3)
+parse [x1,x2,x3] = Sentence (Detf x1) (parseNoun x2) (Verb x3)
 
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
 evaluate2 :: Sentence -> Bool
-evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNome x2 && isVerbo x3
+evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounm x2 && isVerb x3
 
 isDetf :: Palavra -> Bool
 isDetf (Detf x) = elem x detf
 isDetf _ = False
 
-isNome :: Palavra -> Bool
-isNome (NomeSingular x) = elem x nomesSingular
-isNome _ = False
+isNounm :: Palavra -> Bool
+isNounm (Nounm x) = elem x nounm
+isNounm _ = False
 
-isVerbo :: Palavra -> Bool
-isVerbo (Verbo x) = elem x verbos
-isVerbo _ = False
+isVerb :: Palavra -> Bool
+isVerb (Verb x) = elem x verb
+isVerb _ = False
 
-parseNome :: String -> Palavra
-parseNome x
-  | elem x nomesSingular = NomeSingular x
-  | otherwise = NomePlural x
+
+--parses
+parseNoun :: String -> Palavra
+parseNoun x
+  | elem x nounm = Nounm x
+  | elem x nounf = Nounf x
+  | elem x nounm_p = Nounm_p x
+  | elem x nounf_p = Nounf_p x
+
+--parseNoun_p :: String -> Palavra
