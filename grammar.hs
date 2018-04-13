@@ -53,23 +53,24 @@ instance Show Palavra where
   show (Conjm_p x)  = "conjuction(" ++ x ++ ")"
   show (Prop x)     = "propostion(" ++ x ++ ")"
 
-data Sentence = Sentence Palavra Palavra Palavra
+data Sentence = Sentence Palavra Palavra Palavra | Palavra Palavra Palavra Palavra Palavra
+
 instance Show Sentence where
   show (Sentence d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
 
+
 parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence (parseDet x1) (parseNoun x2) (parseVerb x3)
+--parse [x1,x2,x3,x4,x5] = Sentence (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDet x4) (parseNoun x5)
 
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
 evaluate2 :: Sentence -> Bool
 evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounf x2 && isVerb x3
---evaluate2 (Sentence x1 x2 x3) = isDetm x1 && isNounm x2 && isVerb x3
---evaluate2 (Sentence x1 x2 x3) = isDetf_p x1 && isNounf_p x2 && isVerb_p x3
---evaluate2 (Sentence x1 x2 x3) = isDetm_p x1 && isNounm_p x2 && isVerb_p x3
-
-
+                              ||isDetm x1 && isNounm x2 && isVerb x3
+                              ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
+                              ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
 
 --funções isX
 isDetf :: Palavra -> Bool
