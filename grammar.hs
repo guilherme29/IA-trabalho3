@@ -28,6 +28,10 @@ data Palavra = Detf String
             | Nounf_p String
             | Verb String
             | Verb_p String
+            | Conjf String
+            | Conjm String
+            | Conjf_p String
+            | Conjm_p String
 
 instance Show Palavra where
   show (Detf x) = x
@@ -46,11 +50,13 @@ instance Show Sentence where
 parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence (Detf x1) (parseNoun x2) (Verb x3)
 
+{-
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
 evaluate2 :: Sentence -> Bool
 evaluate2 (Sentence x1 x2 x3) = isDetf x1 && isNounm x2 && isVerb x3
+-}
 
 isDetf :: Palavra -> Bool
 isDetf (Detf x) = elem x detf
