@@ -53,26 +53,66 @@ instance Show Palavra where
   show (Conjm_p x)  = "conjuction(" ++ x ++ ")"
   show (Prop x)     = "propostion(" ++ x ++ ")"
 
-data Sentence3 = Sentence3 Palavra Palavra Palavra
-instance Show Sentence3 where
+data Sentence = Sentence3 Palavra Palavra Palavra | Sentence5 Palavra Palavra Palavra Palavra Palavra
+instance Show Sentence where
     show (Sentence3 d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
 
-parse3 :: [String] -> Sentence3
-parse3 [x1,x2,x3] = Sentence3 (parseDet x1) (parseNoun x2) (parseVerb x3)
+parse :: [String] -> Sentence
+parse [x1,x2,x3] = Sentence3 (parseDet x1) (parseNoun x2) (parseVerb x3)
+parse [x1,x2,x3,x4,x5]  = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDet x4) (parseNoun x5)
+--                        | Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseProp x4) (parseNoun x5)
 
-evaluate3 :: [String] -> Bool
-evaluate3 xs = evaluate3aux (parse3 xs)
+evaluate :: [String] -> Bool
+evaluate xs = evaluate2 (parse xs)
 
-evaluate3aux :: Sentence3 -> Bool
-evaluate3aux (Sentence3 x1 x2 x3)   = isDetf x1 && isNounf x2 && isVerb x3
-                                    ||isDetm x1 && isNounm x2 && isVerb x3
-                                    ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
-                                    ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
+evaluate2 :: Sentence -> Bool
+evaluate2 (Sentence3 x1 x2 x3)  = isDetf x1 && isNounf x2 && isVerb x3
+                                ||isDetm x1 && isNounm x2 && isVerb x3
+                                ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
+                                ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
 
 
+{-
 data Sentence5 = Sentence5 Palavra Palavra Palavra Palavra Palavra
 instance Show Sentence5 where
     show (Sentence5 d n v a1 a2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show a1) ++ "," ++ (show a2) ++ ")"
+
+parse5 :: [String] -> Sentence5
+parse5 [x1,x2,x3,x4,x5] = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDet x4) (parseNoun x5)
+--                        | Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseConj x4) (parseNoun x5)
+
+-}
+
+--parses
+parseDet :: String -> Palavra
+parseDet x
+    | elem x detf = Detf x
+    | elem x detm = Detm x
+    | elem x detf_p = Detf_p x
+    | elem x detm_p = Detm_p x
+
+parseNoun :: String -> Palavra
+parseNoun x
+    | elem x nounm = Nounm x
+    | elem x nounf = Nounf x
+    | elem x nounm_p = Nounm_p x
+    | elem x nounf_p = Nounf_p x
+
+parseVerb :: String -> Palavra
+parseVerb x
+    | elem x verb = Verb x
+    | otherwise = Verb_p x
+
+parseConj :: String -> Palavra
+parseConj x
+    | elem x conjf = Conjf x
+    | elem x conjm = Conjm x
+    | elem x conjf_p = Conjf_p x
+    | elem x conjm_p = Conjm_p x
+
+parseProp :: String -> Palavra
+parseProp x
+    | elem x prop = Prop x
 
 
 --funções isX
@@ -135,36 +175,3 @@ isConjm_p _ = False
 isProp :: Palavra -> Bool
 isProp (Prop x) = elem x prop
 isProp _ = False
-
-
-
---parses
-parseDet :: String -> Palavra
-parseDet x
-    | elem x detf = Detf x
-    | elem x detm = Detm x
-    | elem x detf_p = Detf_p x
-    | elem x detm_p = Detm_p x
-
-parseNoun :: String -> Palavra
-parseNoun x
-    | elem x nounm = Nounm x
-    | elem x nounf = Nounf x
-    | elem x nounm_p = Nounm_p x
-    | elem x nounf_p = Nounf_p x
-
-parseVerb :: String -> Palavra
-parseVerb x
-    | elem x verb = Verb x
-    | otherwise = Verb_p x
-
-parseConj :: String -> Palavra
-parseConj x
-    | elem x conjf = Conjf x
-    | elem x conjm = Conjm x
-    | elem x conjf_p = Conjf_p x
-    | elem x conjm_p = Conjm_p x
-
-parseProp :: String -> Palavra
-parseProp x
-    | elem x prop = Prop x
