@@ -39,8 +39,8 @@ data Palavra = Detf String
 instance Show Palavra where
   show (Detf x)     = "determiner(" ++ x ++ ")"
   show (Detm x)     = "determiner(" ++ x ++ ")"
-  show (Detf_p x)     = "determiner(" ++ x ++ ")"
-  show (Detm_p x)     = "determiner(" ++ x ++ ")"  
+  show (Detf_p x)   = "determiner(" ++ x ++ ")"
+  show (Detm_p x)   = "determiner(" ++ x ++ ")"
   show (Nounm x)    = "noun(" ++ x ++ ")"
   show (Nounm_p x)  = "noun(" ++ x ++ ")"
   show (Nounf x)    = "noun(" ++ x ++ ")"
@@ -72,16 +72,67 @@ isDetf :: Palavra -> Bool
 isDetf (Detf x) = elem x detf
 isDetf _ = False
 
+isDetm :: Palavra -> Bool
+isDetm (Detm x) = elem x detm
+isDetm _ = False
+
+isDetf_p :: Palavra -> Bool
+isDetf_p (Detf_p x) = elem x detf_p
+isDetf_p _ = False
+
+isDetm_p :: Palavra -> Bool
+isDetm_p (Detm_p x) = elem x detm_p
+isDetm_p _ = False
+
+isNounf :: Palavra -> Bool
+isNounf (Nounf x) = elem x nounf
+isNounf _ = False
+
 isNounm :: Palavra -> Bool
 isNounm (Nounm x) = elem x nounm
 isNounm _ = False
+
+isNounf_p :: Palavra -> Bool
+isNounf_p (Nounf_p x) = elem x nounf_p
+isNounf_p _ = False
+
+isNounm_p :: Palavra -> Bool
+isNounm_p (Nounm_p x) = elem x nounm_p
+isNounm_p _ = False
 
 isVerb :: Palavra -> Bool
 isVerb (Verb x) = elem x verb
 isVerb _ = False
 
+isVerb_p :: Palavra -> Bool
+isVerb_p (Verb_p x) = elem x verb_p
+isVerb_p _ = False
+
+isConjf :: Palavra -> Bool
+isConjf (Conjf x) = elem x conjf
+isConjf _ = False
+
+isConjm :: Palavra -> Bool
+isConjm (Conjm x) = elem x conjm
+isConjm _ = False
+
+isConjf_p :: Palavra -> Bool
+isConjf_p (Conjf_p x) = elem x conjf_p
+isConjf_p _ = False
+
+isConjm_p :: Palavra -> Bool
+isConjm_p (Conjm_p x) = elem x conjm_p
+isConjm_p _ = False
+
 
 --parses
+parseDet :: String -> Palavra
+parseDet x
+    | elem x detf = Detf x
+    | elem x detm = Detm x
+    | elem x detf_p = Detf_p x
+    | elem x detm_p = Detm_p x
+
 parseNoun :: String -> Palavra
 parseNoun x
     | elem x nounm = Nounm x
@@ -89,9 +140,18 @@ parseNoun x
     | elem x nounm_p = Nounm_p x
     | elem x nounf_p = Nounf_p x
 
-parseDet :: String -> Palavra
-parseDet x
-    | elem x detf = Detf x
-    | elem x detm = Detm x
-    | elem x detf_p = Detf_p x
-    | elem x detm_p = Detm_p x
+parseVerb :: String -> Palavra
+parseVerb x
+    | elem x verb = Verb x
+    | otherwise = Verb_p x
+
+parseConj :: String -> Palavra
+parseConj x
+    | elem x conjf = Conjf x
+    | elem x conjm = Conjm x
+    | elem x conjf_p = Conjf_p x
+    | elem x conjm_p = Conjm_p x
+
+parseProp :: String -> Palavra
+parseProp x
+    | elem x prop = Prop x
