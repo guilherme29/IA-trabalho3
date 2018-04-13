@@ -32,16 +32,23 @@ data Palavra = Detf String
             | Conjm String
             | Conjf_p String
             | Conjm_p String
+            | Prop String
+
 
 instance Show Palavra where
-  show (Detf x) = x
-  show (Detm x) = "determiner(" ++ x ++ ")"
-  show (Nounm x) = "noun(" ++ x ++ ")"
-  show (Nounm_p x) = "noun(" ++ x ++ ")"
-  show (Nounf x) = "noun(" ++ x ++ ")"
-  show (Nounf_p x) = "noun(" ++ x ++ ")"
-  show (Verb x) = "verb(" ++ x ++ ")"
-  show (Verb_p x) = "verb(" ++ x ++ ")"
+  show (Detf x)     = "determiner(" ++ x ++ ")"
+  show (Detm x)     = "determiner(" ++ x ++ ")"
+  show (Nounm x)    = "noun(" ++ x ++ ")"
+  show (Nounm_p x)  = "noun(" ++ x ++ ")"
+  show (Nounf x)    = "noun(" ++ x ++ ")"
+  show (Nounf_p x)  = "noun(" ++ x ++ ")"
+  show (Verb x)     = "verb(" ++ x ++ ")"
+  show (Verb_p x)   = "verb(" ++ x ++ ")"
+  show (Conjf x)    = "conjuction(" ++ x ++ ")"
+  show (Conjm x)    = "conjuction(" ++ x ++ ")"
+  show (Conjf_p x)  = "conjuction(" ++ x ++ ")"
+  show (Conjm_p x)  = "conjuction(" ++ x ++ ")"
+  show (Prop x)     = "propostion(" ++ x ++ ")"
 
 data Sentence = Sentence Palavra Palavra Palavra
 instance Show Sentence where
