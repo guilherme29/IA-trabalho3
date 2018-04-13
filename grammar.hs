@@ -19,7 +19,7 @@ conjm_p = ["pelos","nos"]
 --lista de proposicoes
 prop = ["para","com"]
 
-
+--estrutura de cada palavra
 data Palavra = Detf String
             | Detm String
             | Detf_p String
@@ -36,6 +36,7 @@ data Palavra = Detf String
             | Conjm_p String
             | Prop String
 
+--como cada palavra deve imrpimir
 instance Show Palavra where
   show (Detf x)     = "determiner(" ++ x ++ ")"
   show (Detm x)     = "determiner(" ++ x ++ ")"
@@ -53,13 +54,14 @@ instance Show Palavra where
   show (Conjm_p x)  = "conjuction(" ++ x ++ ")"
   show (Prop x)     = "propostion(" ++ x ++ ")"
 
+--estrutura duma Sentence
 data Sentence   = Sentence3 Palavra Palavra Palavra
                 | Sentence5 Palavra Palavra Palavra Palavra Palavra
                 | Sentence6 Palavra Palavra Palavra Palavra Palavra Palavra
-instance Show Sentence where
-    show (Sentence3 d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
-    show (Sentence5 d n v dc n2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show dc) ++ "," ++ (show n2) ++ ")"
-    show (Sentence6 d n v p d2 n2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show p) ++ "," ++ (show d2) ++ "," ++ (show n2) ++ ")"
+instance Show Sentence where --como um Sentence deve imprimir
+    show (Sentence3 d n v) = "sentence(noun_phrase(" ++ (show d) ++ "," ++ (show n) ++ "),verbal_phrase(" ++ (show v) ++ "))"
+    show (Sentence5 d n v dc n2) = "sentence(noun_phrase(" ++ (show d) ++ "," ++ (show n) ++ "),verbal_phrase(" ++ (show v) ++ "," ++ (show dc) ++ "," ++ (show n2) ++ "))"
+    show (Sentence6 d n v p d2 n2) = "sentence(noun_phrase(" ++ (show d) ++ "," ++ (show n) ++ "),verbal_phrase(" ++ (show v) ++ "," ++ (show p) ++ "," ++ (show d2) ++ "," ++ (show n2) ++ "))"
 
 parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence3 (parseDet x1) (parseNoun x2) (parseVerb x3)
@@ -78,17 +80,6 @@ evaluate2 (Sentence3 x1 x2 x3)  = isDetf x1 && isNounf x2 && isVerb x3
                                 ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
                                 ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
 
-
-{-
-data Sentence5 = Sentence5 Palavra Palavra Palavra Palavra Palavra
-instance Show Sentence5 where
-    show (Sentence5 d n v a1 a2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show a1) ++ "," ++ (show a2) ++ ")"
-
-parse5 :: [String] -> Sentence5
-parse5 [x1,x2,x3,x4,x5] = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDet x4) (parseNoun x5)
---                        | Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseConj x4) (parseNoun x5)
-
--}
 
 --parses
 --parse para Det e Conj junto
