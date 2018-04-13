@@ -53,14 +53,21 @@ instance Show Palavra where
   show (Conjm_p x)  = "conjuction(" ++ x ++ ")"
   show (Prop x)     = "propostion(" ++ x ++ ")"
 
-data Sentence = Sentence3 Palavra Palavra Palavra | Sentence5 Palavra Palavra Palavra Palavra Palavra
+data Sentence   = Sentence3 Palavra Palavra Palavra
+                | Sentence5 Palavra Palavra Palavra Palavra Palavra
+                | Sentence6 Palavra Palavra Palavra Palavra Palavra Palavra
 instance Show Sentence where
     show (Sentence3 d n v) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
+    show (Sentence5 d n v dc n2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show dc) ++ "," ++ (show n2) ++ ")"
+    show (Sentence6 d n v p d2 n2) = "sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ "," ++ (show p) ++ "," ++ (show d2) ++ "," ++ (show n2) ++ ")"
 
 parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence3 (parseDet x1) (parseNoun x2) (parseVerb x3)
-parse [x1,x2,x3,x4,x5]  = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDet x4) (parseNoun x5)
---                        | Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseProp x4) (parseNoun x5)
+parse [x1,x2,x3,x4,x5]
+    | isDet (parseDC x4)  =  Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDC x4) (parseNoun x5)
+    | isConj (parseDC x4) = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseDC x4) (parseNoun x5)
+parse [x1,x2,x3,x4,x5,x6] = Sentence6 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseProp x4) (parseDet x5) (parseNoun x6)
+
 
 evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
@@ -84,6 +91,18 @@ parse5 [x1,x2,x3,x4,x5] = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) 
 -}
 
 --parses
+--parse para Det e Conj junto
+parseDC :: String -> Palavra
+parseDC x
+    | elem x detf = Detf x
+    | elem x detm = Detm x
+    | elem x detf_p = Detf_p x
+    | elem x detm_p = Detm_p x
+    | elem x conjf = Conjf x
+    | elem x conjm = Conjm x
+    | elem x conjf_p = Conjf_p x
+    | elem x conjm_p = Conjm_p x
+
 parseDet :: String -> Palavra
 parseDet x
     | elem x detf = Detf x
@@ -116,6 +135,10 @@ parseProp x
 
 
 --funções isX
+--funcao auxiliar
+isDet :: Palavra -> Bool
+isDet x = isDetf x || isDetm x || isDetf_p x || isDetm_p x
+
 isDetf :: Palavra -> Bool
 isDetf (Detf x) = elem x detf
 isDetf _ = False
@@ -155,6 +178,10 @@ isVerb _ = False
 isVerb_p :: Palavra -> Bool
 isVerb_p (Verb_p x) = elem x verb_p
 isVerb_p _ = False
+
+--funcao auxiliar
+isConj :: Palavra -> Bool
+isConj x = isConjf x || isConjm x || isConjf_p x || isConjm_p x
 
 isConjf :: Palavra -> Bool
 isConjf (Conjf x) = elem x conjf
