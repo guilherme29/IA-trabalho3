@@ -1,27 +1,45 @@
+det    = ["A", "O"]
+nomesSingular  = ["menina", "menino"]
+nomesPlural    = ["meninas", "meninos"]
+verbos = ["morreu", "suicidou"]
 
-noun_m:: -> Bool
---noun_m x = elem x [tempo,['c','a','c','a','d','o','r'],['c','a','c','a','d','o','r'],['r','i','o'],['m','a','r'],['v','e','n','t','o'],['m','a','r','t','e','l','o'],['c','a','c','h','o','r','r','o'],['t','a','m','b','o','r'],['s','i','n','o']]
-noun_m x = elem x ['tempo']
+data Palavra = Det String
+          | NomeSingular String
+          | NomePlural String
+          | Verbo String
 
+instance Show Palavra where
+  show (Det x) = x
+  show (NomeSingular x) = "NomeSingular(" ++ x ++ ")"
+  show (NomePlural x) = "NomePlural(" ++ x ++ ")"
+  show (Verbo x) = x
 
+data Sentence = Sentence Palavra Palavra Palavra
+instance Show Sentence where
+  show (Sentence d n v) = "Sentence(" ++ (show d) ++ "," ++ (show n) ++ "," ++ (show v) ++ ")"
 
---nomes masculinos singular
-noun_m :: [String]
-noun_m  = ["tempo","cacador","rosto","rio","mar","vento","martelo","cachorro","tambor","sino"]
---determinantes masculinos singular
-determiner_m :: [String]
-determiner_m = ["o","O"]
+parse :: [String] -> Sentence
+parse [x1,x2,x3] = Sentence (Det x1) (parseNome x2) (Verbo x3)
 
+evaluate :: [String] -> Bool
+evaluate xs = evaluate2 (parse xs)
 
---noun_m ::= "texto1" | "texto2"
+evaluate2 :: Sentence -> Bool
+evaluate2 (Sentence x1 x2 x3) = isDet x1 && isNome x2 && isVerbo x3
 
+isDet :: Palavra -> Bool
+isDet (Det x) = elem x det
+isDet _ = False
 
-type Noun_m = String
-data Noun_m = "tempo"
-            | "cacador"
-    deriving Show
+isNome :: Palavra -> Bool
+isNome (NomeSingular x) = elem x nomesSingular
+isNome _ = False
 
+isVerbo :: Palavra -> Bool
+isVerbo (Verbo x) = elem x verbos
+isVerbo _ = False
 
-
-
---data Noun_phrase = determiner_m noun_m
+parseNome :: String -> Palavra
+parseNome x
+  | elem x nomesSingular = NomeSingular x
+  | otherwise = NomePlural x
