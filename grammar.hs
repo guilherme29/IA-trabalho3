@@ -75,14 +75,23 @@ evaluate :: [String] -> Bool
 evaluate xs = evaluate2 (parse xs)
 
 evaluate2 :: Sentence -> Bool
-evaluate2 (Sentence3 x1 x2 x3)  = isDetf x1 && isNounf x2 && isVerb x3
-                                ||isDetm x1 && isNounm x2 && isVerb x3
-                                ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
-                                ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
+evaluate2 (Sentence3 x1 x2 x3)
+    = isDetf x1 && isNounf x2 && isVerb x3
+    ||isDetm x1 && isNounm x2 && isVerb x3
+    ||isDetf_p x1 && isNounf_p x2 && isVerb_p x3
+    ||isDetm_p x1 && isNounm_p x2 && isVerb_p x3
 
-
+evaluate2 (Sentence5 x1 x2 x3 x4 x5)
+    = evaluate2(Sentence3 x1 x2 x3) && isDetf x4    && isNounf x5 --usamos a função para a frase curta para simplificar o código
+    ||evaluate2(Sentence3 x1 x2 x3) && isDetm x4    && isNounm x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isDetf_p x4  && isNounf_p x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isDetm_p x4  && isNounm_p x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isConjf x4   && isNounf x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isConjm x4   && isNounm x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isConjf_p x4 && isNounf_p x5
+    ||evaluate2(Sentence3 x1 x2 x3) && isConjm_p x4 && isNounm_p x5
 --parses
---parse para Det e Conj junto
+--parse para Det e Conj junto(função auxiliar)
 parseDC :: String -> Palavra
 parseDC x
     | elem x detf = Detf x
