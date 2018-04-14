@@ -90,6 +90,13 @@ evaluate2 (Sentence5 x1 x2 x3 x4 x5)
     ||(evaluate2(Sentence3 x1 x2 x3) && isConjm x4   && isNounm x5)
     ||(evaluate2(Sentence3 x1 x2 x3) && isConjf_p x4 && isNounf_p x5)
     ||(evaluate2(Sentence3 x1 x2 x3) && isConjm_p x4 && isNounm_p x5)
+
+evaluate2 (Sentence6 x1 x2 x3 x4 x5 x6)
+    = (evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetf x5 && isNounf x6)
+    ||(evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetm x5 && isNounm x6)
+    ||(evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetf_p x5 && isNounf_p x6)
+    ||(evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetm_p x5 && isNounm_p x6)
+
 --parses
 --parse para Det e Conj junto(função auxiliar)
 parseDC :: String -> Palavra
