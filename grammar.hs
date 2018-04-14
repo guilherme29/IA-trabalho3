@@ -67,8 +67,8 @@ parse :: [String] -> Sentence
 parse [x1,x2,x3] = Sentence3 (parseDet x1) (parseNoun x2) (parseVerb x3)
 parse [x1,x2,x3,x4,x5]
     | isDet (parseDC x4)  = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDC x4) (parseNoun x5)
-    | isConj (parseDC x4) = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseDC x4) (parseNoun x5)
-parse [x1,x2,x3,x4,x5,x6] = Sentence6 (parseDet x1) (parseNoun x2) (parseVerb x4) (parseProp x4) (parseDet x5) (parseNoun x6)
+    | isConj (parseDC x4) = Sentence5 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseDC x4) (parseNoun x5)
+parse [x1,x2,x3,x4,x5,x6] = Sentence6 (parseDet x1) (parseNoun x2) (parseVerb x3) (parseProp x4) (parseDet x5) (parseNoun x6)
 
 
 evaluate :: [String] -> Bool
