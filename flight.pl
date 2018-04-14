@@ -1,5 +1,30 @@
 :- op(40,xfy,:). /* operador para horas */
 :- op(50,xfy,/). /* operador que nao percebo muito bem */
+/*utilização do member */
+:- use_module(library(lists)).
+
+/* se quisesse definir a função:
+member(X, [X|_]).
+member(X, [Y| L]):- member(X,L).
+*/
+
+direct_flight(Place1,Place2) :-
+    timetable(Place1,Place2,Flightlist),
+    member(Deptime/Arrtime/Num/Daylist,Flightlist), %vemos se está na lista
+    format('Days-> ~w ~nDeptime-> ~w ~nArrtime-> ~w ~nNum-> ~w',[Daylist,Deptime,Arrtime,Num]).%print
+
+
+/*exemplo duma query desta função
+?- exists_day(mo,[mo]).
+Correct to: "existsday(mo,[mo])"? yes
+true.
+*/
+exists_day(Day, alldays):-
+    member(Day,[mo,tu,we,th,fr,sa,su]).
+exists_day(Day,Daylist):-
+    member(Day,Daylist).
+
+%dep_time([Place1/Place2/Flight_num/Dep|_],Dep).
 
 
 timetable(edinburgh,london,
@@ -48,22 +73,3 @@ timetable(zurich,london,
 
 timetable(zurich,milan,
 [ 7:55/8:45/sr620/alldays]).
-
-member(X, [X|_]).
-member(X, [Y| L]):- member(X,L).
-
-direct_flight(Place1,Place2) :-
-    timetable(Place1,Place2,Flightlist),
-    member(Deptime/Arrtime/Num/Daylist,Flightlist), %vemos se está na lista
-    format('Days-> ~w ~nDeptime-> ~w ~nArrtime-> ~w ~nNum-> ~w',[Daylist,Deptime,Arrtime,Num]).%print
-
-
-/*exemplo duma query desta função
-?- exists_day(mo,[mo]).
-Correct to: "existsday(mo,[mo])"? yes
-true.
-*/
-exists_day(Day, alldays):-
-    member(Day,[mo,tu,we,th,fr,sa,su]).
-exists_day(Day,Daylist):-
-    member(Day,Daylist).
