@@ -24,10 +24,8 @@ class Graph{
         Arc(int endNode, double departure, double flightTime, String flightNum){
             this.endNode = endNode;
             this.departure = departure;
-            //this.arrival = arrival;
             this.flightTime = flightTime+0.40;
             this.flightNum = flightNum;
-            //this.days = days;
         }
 
         int getEndNode(){

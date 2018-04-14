@@ -50,6 +50,37 @@ class Cities{
             mapa.insertNewArc(1, 4, 8.30 + 24*i, 11.20-8.30, "ba510");
             mapa.insertNewArc(1, 4, 11.00 + 24*i, 13.50-11.00, "az459");
         }
+
+        /* voos ljubljana -> zurich */
+        mapa.insertNewArc(2, 3, 11.30 + 24*1, 12.40-11.30, "ju322");
+        mapa.insertNewArc(2, 3, 11.30 + 24*3, 12.40-11.30, "ju322");
+
+        /* voos ljubljana -> london */
+        mapa.insertNewArc(2, 1, 11.10 + 24*4, 12.20-11.10, "yu200");
+        mapa.insertNewArc(2, 1, 11.25 + 24*4, 12.20-11.25, "yu212");
+
+        /* voos milan -> london */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(4, 1, 9.10 + 24*i, 10.00-9.10, "az458");
+            mapa.insertNewArc(4, 1, 12.00 + 24*i, 13.10-12.00, "ba511");
+        }
+
+        /* voos milan -> zurich */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(4, 3, 9.25 + 24*i, 10.15-9.25, "sr621");
+            mapa.insertNewArc(4, 3, 12.45 + 24*i, 13.35-12.45, "sr623");
+        }
+
+        /* voos zurich -> ljubljana */
+        mapa.insertNewArc(3, 2, 13.30 + 24*1, 14.40-13.30, "yu323");
+        mapa.insertNewArc(3, 2, 13.30 + 24*3, 14.40-13.30, "yu323");
+
+        /* voos zurich -> london */
+        // INACABADO.
+        for(int i=0;i<6;i++){
+            mapa.insertNewArc(3, 1, 13.30 + 24*3, 14.40-13.30, "yu323");
+        }
+
         return mapa;
     }
 }
