@@ -1,3 +1,7 @@
+/* exemplo duma query: */
+% ?- sentence(X,['A',menina,corre],[]).
+% X = sent(noun_phrase(det('A'), noun_f(menina)), verbal_phrase(verb(corre))) .
+
 sentence(sent(Np,Vp)) --> noun_phrase(Np), verbal_phrase(Vp).
 sentence(sent(Npp,Vpp)) --> noun_phrase_p(Npp), verbal_phrase_p(Vpp).
 
