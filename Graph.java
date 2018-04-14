@@ -21,15 +21,15 @@ class Grafo{
         float arrival;
         float flightTime;
         String flightNum;
-        boolean[] days; //segunda-feira é o 0
+    //    boolean[] days; //segunda-feira é o 0
 
-        Arc(int endNode, float departure, float arrival, float flightTime, String flightNum, boolean[] days){
+        Arc(int endNode, float departure, float arrival, float flightTime, String flightNum){
             this.endNode = endNode;
             this.departure = departure;
             this.arrival = arrival;
             this.flightTime = flightTime;
             this.flightNum = flightNum;
-            this.days = days;
+            //this.days = days;
         }
 
         int getEndNode(){
@@ -41,27 +41,13 @@ class Grafo{
         }
 
         public int compareTo(Arc beta){
-            for(int i=0;i<7;i++){
-                if(this.days[i] && !beta.days[i]){
-                    //se o dia i tem voos neste e não no outro então este vem à frente de qq voo do dia seguinte me ambos os arcs
-                    return -1;
-                }
-                else if(this.days[i] != beta.days[i]){
-                    //caso anterior ao contrário
-                    return 1;
-                }
-                else{
-                    //dois voos que ocorrem no mesmo dia
-                    if(this.departure<beta.departure){
-                        return -1;
-                    }
-                    else if(this.departure>beta.departure){
-                        return 1;
-                    }
-                    else return 0;
-                }
+            if(this.departure<beta.departure){
+                return -1;
             }
-            return 0;
+            else if(this.departure>beta.departure){
+                return 1;
+            }
+            else return 0;
         }
     }
 
@@ -91,8 +77,8 @@ class Grafo{
         return verts[i].adjs;
     }
 
-    void insertNewArc(int curNode, int endNode, float departure, float arrival, float flightTime, String flightNum, boolean[] days){
-        verts[curNode].adjs.add(new Arc(endNode, departure, arrival, flightTime, flightNum, days));
+    void insertNewArc(int curNode, int endNode, float departure, float arrival, float flightTime, String flightNum){
+        verts[curNode].adjs.add(new Arc(endNode, departure, arrival, flightTime, flightNum));
         narcs++;
     }
 
