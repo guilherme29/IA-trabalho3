@@ -13,12 +13,43 @@ class Cities{
             }
         }
         //insertNewArc(int curNode, int endNode, double departure, double flightTime, String flightNum)
+        //O TEMPO É 0 ÀS 0:00 DE SEGUNDA E É ACUMULATIVO SEMPRE
+
         /* voos edinburgh -> london */
         for(int i=0;i<7;i++){
-            mapa.insertNewArc(1, 0, 9.40 + 24*i, 10.50-9.40, "ba4733");
-            mapa.insertNewArc(1, 0, 13.40 + 24*i, 14.50-13.40, "ba4733");
+            mapa.insertNewArc(0, 1, 9.40 + 24*i, 10.50-9.40, "ba4733");
+            mapa.insertNewArc(0, 1, 13.40 + 24*i, 14.50-13.40, "ba4773");
+        }
+        for(int i=0;i<5;i++){
+            mapa.insertNewArc(0, 1, 19.40 + 24*i, 20.50-19.40, "ba4833");
+        }
+        mapa.insertNewArc(0, 1, 19.40 + 24*6, 20.50-19.40, "ba4833");
+
+        /* voos london -> edinburgh */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(1, 0, 9.40 + 24*i, 10.50-9.40, "ba4732");
+            mapa.insertNewArc(1, 0, 11.40 + 24*i, 12.50-11.40, "ba4752");
+        }
+        for(int i=0;i<5;i++){
+            mapa.insertNewArc(1, 0, 18.40 + 24*i, 19.50-18.40, "ba4822");
+        }
+        mapa.insertNewArc(1, 0, 18.40 + 24*6, 19.50-18.40, "ba4822");
+
+        /* voos london -> ljubljana */
+        mapa.insertNewArc(1, 2, 13.20 + 24*4, 16.20-13.20, "ju201");
+        mapa.insertNewArc(1, 2, 13.20 + 24*6, 16.20-13.20, "ju213");
+
+        /* voos london -> zurich */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(1, 3, 9.10 + 24*i, 11.45-9.10, "ba614");
+            mapa.insertNewArc(1, 3, 14.45 + 24*i, 17.20-14.42, "sr805");
         }
 
+        /* voos london -> milan */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(1, 4, 8.30 + 24*i, 11.20-8.30, "ba510");
+            mapa.insertNewArc(1, 4, 11.00 + 24*i, 13.50-11.00, "az459");
+        }
         return mapa;
     }
 }
