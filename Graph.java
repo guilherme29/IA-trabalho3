@@ -13,6 +13,7 @@ class Graph{
         void print(){
             System.out.println(city);
         }
+    }
 
     class Arc implements Comparable<Arc>{
         int endNode;
