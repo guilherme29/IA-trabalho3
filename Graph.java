@@ -1,7 +1,7 @@
 import java.util.PriorityQueue;
 //implementado com priorityqueues e não com linkedlist para ser mais fácil ver que arco tem o próximo voo
 
-class Grafo{
+class Graph{
     class Node{
         String city;
         PriorityQueue<Arc> adjs;
@@ -13,7 +13,6 @@ class Grafo{
         void print(){
             System.out.println(city);
         }
-    }
 
     class Arc implements Comparable<Arc>{
         int endNode;
@@ -40,7 +39,7 @@ class Grafo{
             return flightTime;
         }
 
-        public int compareTo(Arc beta){
+        public int compareTo(Arc beta){ //a priorityQueue vai sortear com base nesta função.
             if(this.departure<beta.departure){
                 return -1;
             }
@@ -56,7 +55,7 @@ class Grafo{
     int nvs;
     int narcs;
 
-    Grafo(int n){
+    Graph(int n){
         nvs = n;
         narcs = 0;
         verts = new Node[n+1];
