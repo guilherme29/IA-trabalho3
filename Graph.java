@@ -1,4 +1,4 @@
-import java.util.PriorityQueue;
+import java.util.*;
 //implementado com priorityqueues e não com linkedlist para ser mais fácil ver que arco tem o próximo voo
 
 class Graph{
