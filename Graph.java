@@ -78,6 +78,10 @@ class Arc implements Comparable<Arc>{
         return flightTime;
     }
 
+    String getFlightNum(){
+        return flightNum;
+    }
+
     public int compareTo(Arc beta){ //a priorityQueue vai sortear com base nesta função.
         if(this.departure<beta.departure){
             return -1;
