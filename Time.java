@@ -13,8 +13,8 @@ class Time{
         return (int) Math.round(minutes - getDays(minutes)*24*60 - getHours(minutes)*60);
     }
 
-    public static void printTime(double minutes){
-        System.out.print(dayOfWeek(minutes) + " " + getHours(minutes) + ":" + getMins(minutes));
+    public static String getTime(double minutes){
+        return dayOfWeek(minutes) + " " + getHours(minutes) + ":" + getMins(minutes);
     }
 
     public static String dayOfWeek(double minutes){
