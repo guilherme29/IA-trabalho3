@@ -1,7 +1,8 @@
-import java.util.LinkedList;
+import java.util.Linkedlist;
 
 class Flight{
-    void getDirectFlights(int sourceNode, int endNode, Graph map){
-        Linkedlist<Arc> flightList = map.findAllArcs(sourceNode,endNode);
-    }
+    //void getDirectFlights(int sourceNode, int endNode, Graph map){
+    //    PriorityQueue<Arc> flightList = map.findAllArcs(sourceNode,endNode);
+
+    //}
 }
