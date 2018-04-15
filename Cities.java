@@ -76,10 +76,19 @@ class Cities{
         mapa.insertNewArc(3, 2, 13.30 + 24*3, 14.40-13.30, "yu323");
 
         /* voos zurich -> london */
-        // INACABADO.
         for(int i=0;i<6;i++){
-            mapa.insertNewArc(3, 1, 13.30 + 24*3, 14.40-13.30, "yu323");
+            mapa.insertNewArc(3, 1, 9.00 + 24*i, 9.40-9.00, "ba613");
         }
+        for(int i=0;i<5;i++){
+            mapa.insertNewArc(3, 1, 16.10 + 24*i, 16.55-16.10, "sr806");
+        }
+        mapa.insertNewArc(3, 1, 16.10 + 24*6, 16.55-16.10, "sr806");
+
+        /* zurich -> milan */
+        for(int i=0;i<7;i++){
+            mapa.insertNewArc(3, 4, 7.55 + 24*i, 8.45-7.55, "sr620");
+        }
+
 
         return mapa;
     }
