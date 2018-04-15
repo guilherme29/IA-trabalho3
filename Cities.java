@@ -1,7 +1,7 @@
 
 
 class Cities{
-    Graph makeMap(){ //função para fazer o 'mapa' do exercício
+    public static Graph makeMap(){ //função para fazer o 'mapa' do exercício
         Graph mapa = new Graph(5);
         for(int i=0;i<5;i++){
             switch(i){
@@ -93,7 +93,7 @@ class Cities{
         return mapa;
     }
 
-    String getCity(int i){
+    public static String getCity(int i){
         switch(i){
             case 0:{return "edinburgh";}
             case 1:{return "london";}
