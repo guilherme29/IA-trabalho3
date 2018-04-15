@@ -17,18 +17,18 @@ class Cities{
 
         /* voos edinburgh -> london */
         for(int i=0;i<7;i++){
-            mapa.insertNewArc(0, 1, 9.40 + 24*i, 10.50-9.40, "ba4733");
-            mapa.insertNewArc(0, 1, 13.40 + 24*i, 14.50-13.40, "ba4773");
+            mapa.insertNewArc(0, 1, (9*60+0.40) + 24*i, (10*60+0.50)-(9*60+0.40), "ba4733");
+            mapa.insertNewArc(0, 1, (13*60+0.40) + 24*i, (14*60+0.50)-(13*60+0.40), "ba4773");
         }
         for(int i=0;i<5;i++){
-            mapa.insertNewArc(0, 1, 19.40 + 24*i, 20.50-19.40, "ba4833");
+            mapa.insertNewArc(0, 1, (19*60+0.40) + 24*i, (20*60+0.50)-(19*60+0.40), "ba4833");
         }
-        mapa.insertNewArc(0, 1, 19.40 + 24*6, 20.50-19.40, "ba4833");
+        mapa.insertNewArc(0, 1, (19*60+0.40) + 24*6, (20*60+0.50)-(19*60+0.40), "ba4833");
 
         /* voos london -> edinburgh */
         for(int i=0;i<7;i++){
-            mapa.insertNewArc(1, 0, 9.40 + 24*i, 10.50-9.40, "ba4732");
-            mapa.insertNewArc(1, 0, 11.40 + 24*i, 12.50-11.40, "ba4752");
+            mapa.insertNewArc(1, 0, (9*60+0.40) + 24*i, (10*60+0.50)-(9*60+0.40), "ba4732");
+            mapa.insertNewArc(1, 0, (11*60+0.40) + 24*i, (12*60+0.50)-(11*60+0.40), "ba4752");
         }
         for(int i=0;i<5;i++){
             mapa.insertNewArc(1, 0, 18.40 + 24*i, 19.50-18.40, "ba4822");
