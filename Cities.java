@@ -92,4 +92,15 @@ class Cities{
 
         return mapa;
     }
+
+    String getCity(int i){
+        switch(i){
+            case 0:{return "edinburgh";}
+            case 1:{return "london";}
+            case 2:{return "ljubljana";}
+            case 3:{return "zurich";}
+            case 4:{return "milan";}
+            default: return null;
+        }
+    }
 }
