@@ -62,7 +62,7 @@ class Arc implements Comparable<Arc>{
     Arc(int endNode, double departure, double flightTime, String flightNum){
         this.endNode = endNode;
         this.departure = departure;
-        this.flightTime = flightTime+0.40;
+        this.flightTime = flightTime+40;
         this.flightNum = flightNum;
     }
 
