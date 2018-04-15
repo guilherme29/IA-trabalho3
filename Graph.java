@@ -51,90 +51,50 @@ class Graph{
         }
         return arcList;
     }
+}
 
-    class Arc implements Comparable<Arc>{
-        int endNode;
-        double departure;
-        double flightTime;
-        String flightNum;
+class Arc implements Comparable<Arc>{
+    int endNode;
+    double departure;
+    double flightTime;
+    String flightNum;
 
-        Arc(int endNode, double departure, double flightTime, String flightNum){
-            this.endNode = endNode;
-            this.departure = departure;
-            this.flightTime = flightTime+0.40;
-            this.flightNum = flightNum;
-        }
-
-        int getEndNode(){
-            return endNode;
-        }
-
-        double getFlightTime(){
-            return flightTime;
-        }
-
-        public int compareTo(Arc beta){ //a priorityQueue vai sortear com base nesta função.
-            if(this.departure<beta.departure){
-                return -1;
-            }
-            else if(this.departure>beta.departure){
-                return 1;
-            }
-            else return 0;
-        }
+    Arc(int endNode, double departure, double flightTime, String flightNum){
+        this.endNode = endNode;
+        this.departure = departure;
+        this.flightTime = flightTime+0.40;
+        this.flightNum = flightNum;
     }
 
-<<<<<<< HEAD
-    class Node{
-        String city;
-        PriorityQueue<Arc> adjs;
+    int getEndNode(){
+        return endNode;
+    }
 
-        Node(){
-            adjs = new PriorityQueue<Arc>();
+    double getFlightTime(){
+        return flightTime;
+    }
+
+    public int compareTo(Arc beta){ //a priorityQueue vai sortear com base nesta função.
+        if(this.departure<beta.departure){
+            return -1;
         }
-
-        void print(){
-            System.out.println(city);
+        else if(this.departure>beta.departure){
+            return 1;
         }
-=======
-    /* implementação do grafo*/
-    Node verts[];
-    int nvs;
-    int narcs;
+        else return 0;
+    }
+}
 
-    Graph(int n){
-        nvs = n;
-        narcs = 0;
-        verts = new Node[n+1];
-        for(int i=0;i<=n;i++){
-            verts[i] = new Node();
-        }
+class Node{
+    String city;
+    PriorityQueue<Arc> adjs;
+
+    Node(){
+        adjs = new PriorityQueue<Arc>();
     }
 
-    int numVerts(){
-        return nvs;
+    void print(){
+        System.out.println(city);
     }
 
-    int numArcs(){
-        return narcs;
-    }
-
-    PriorityQueue<Arc> adjsNode(int i){
-        return verts[i].adjs;
-    }
-
-    void insertNewArc(int curNode, int endNode, double departure, double flightTime, String flightNum){
-        verts[curNode].adjs.add(new Arc(endNode, departure, flightTime, flightNum));
-        narcs++;
-    }
-
-    Arc findArc(int i,int j){
-        for(Arc adj : adjsNode(i)){
-            if(adj.getEndNode() == j){
-                return adj;
-            }
-        }
-        return null;
->>>>>>> e303d0635dbf6cb9f7cc676500f85544d76efac4
-    }
 }
