@@ -70,6 +70,10 @@ class Arc implements Comparable<Arc>{
         return endNode;
     }
 
+    double getDeparture(){
+        return departure;
+    }
+
     double getFlightTime(){
         return flightTime;
     }
