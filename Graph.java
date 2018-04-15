@@ -84,6 +84,7 @@ class Graph{
         }
     }
 
+<<<<<<< HEAD
     class Node{
         String city;
         PriorityQueue<Arc> adjs;
@@ -95,5 +96,45 @@ class Graph{
         void print(){
             System.out.println(city);
         }
+=======
+    /* implementação do grafo*/
+    Node verts[];
+    int nvs;
+    int narcs;
+
+    Graph(int n){
+        nvs = n;
+        narcs = 0;
+        verts = new Node[n+1];
+        for(int i=0;i<=n;i++){
+            verts[i] = new Node();
+        }
+    }
+
+    int numVerts(){
+        return nvs;
+    }
+
+    int numArcs(){
+        return narcs;
+    }
+
+    PriorityQueue<Arc> adjsNode(int i){
+        return verts[i].adjs;
+    }
+
+    void insertNewArc(int curNode, int endNode, double departure, double flightTime, String flightNum){
+        verts[curNode].adjs.add(new Arc(endNode, departure, flightTime, flightNum));
+        narcs++;
+    }
+
+    Arc findArc(int i,int j){
+        for(Arc adj : adjsNode(i)){
+            if(adj.getEndNode() == j){
+                return adj;
+            }
+        }
+        return null;
+>>>>>>> e303d0635dbf6cb9f7cc676500f85544d76efac4
     }
 }
