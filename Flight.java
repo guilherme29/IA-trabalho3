@@ -17,6 +17,8 @@ class Flight{
 
     public static void printFlight(int sourceNode, Arc flight){
         System.out.println(Cities.getCity(sourceNode) + " -> " + Cities.getCity(flight.endNode));
+
+        /*
         double depD = 0; //departure day
         double depH = (flight.departure*100)/60;  //departure hours
         if(depH>=24){
@@ -41,32 +43,8 @@ class Flight{
         System.out.println();
         */
 
-        System.out.println(flight.departure + " -> " + flight.flightTime);
-        System.out.println("Departure: " + depH + ":" + depM);
+        //System.out.println(flight.departure + " -> " + flight.flightTime);
+        //System.out.println("Departure: " + depH + ":" + depM);
     }
 
-    static String getDay(int i){
-        switch(i){
-            case 0: return "mo";
-            case 1: return "tu";
-            case 2: return "we";
-            case 3: return "th";
-            case 4: return "fr";
-            case 5: return "sa";
-            case 6: return "su";
-            default: return "ERRO";
-        }
-    }
-
-    static String getDay(double r){
-        int i = (int) Math.round(r);
-        if(i == 0) return "mo";
-        else if(i == 1) return "tu";
-        else if(i == 2) return "we";
-        else if(i == 3) return "th";
-        else if(i == 4) return "fr";
-        else if(i == 5) return "sa";
-        else if(i == 5) return "su";
-        else return "ERRO";
-    }
 }
