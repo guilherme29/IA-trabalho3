@@ -93,16 +93,33 @@ class Arc implements Comparable<Arc>{
     }
 }
 
-class Node{
+class Node implements Comparable<Node>{
     String city;
     PriorityQueue<Arc> adjs;
+    int distance;
 
     Node(){
         adjs = new PriorityQueue<Arc>();
+        distance = Integer.MAX_VALUE;
     }
 
     void print(){
         System.out.println(city);
+    }
+
+    int getCityNum(){
+        switch(city){
+            case "edinburgh":{return 0;}
+            case "london":{return 1;}
+            case "ljubljana":{return 2;}
+            case "zurich":{return 3;}
+            case "milan":{return 4;}
+            default: return -1;
+        }
+    }
+
+    public int compareTo(Node beta){
+        return this.distance < beta.distance ? -1 : 1;
     }
 
 }
