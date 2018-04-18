@@ -28,7 +28,7 @@ class Graph{
         return verts[i].adjs;
     }
 
-    void insertNewArc(int curNode, int endNode, double departure, double flightTime, String flightNum){
+    void insertNewArc(int curNode, int endNode, int departure, int flightTime, String flightNum){
         verts[curNode].adjs.add(new Arc(endNode, departure, flightTime, flightNum));
         narcs++;
     }
@@ -55,11 +55,11 @@ class Graph{
 
 class Arc implements Comparable<Arc>{
     int endNode;
-    double departure;
-    double flightTime;
+    int departure;
+    int flightTime;
     String flightNum;
 
-    Arc(int endNode, double departure, double flightTime, String flightNum){
+    Arc(int endNode, int departure, int flightTime, String flightNum){
         this.endNode = endNode;
         this.departure = departure;
         this.flightTime = flightTime+40;
@@ -70,11 +70,11 @@ class Arc implements Comparable<Arc>{
         return endNode;
     }
 
-    double getDeparture(){
+    int getDeparture(){
         return departure;
     }
 
-    double getFlightTime(){
+    int getFlightTime(){
         return flightTime;
     }
 
