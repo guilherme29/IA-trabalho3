@@ -1,0 +1,134 @@
+
+
+Para executar o programa do exercício das gramáticas em PROLOG:
+swipl grammar.pl
+
+casos de teste em PROLOG:
+
+sentence(X,['A',menina,corre,para,a,floresta],[]).
+sentence(X,['A',menina,corre,para,a,mae],[]).
+sentence(X,['A',vida,corre],[]).
+sentence(X,['o',tempo,corre],[]).
+sentence(X,['o',cacador,correu,com,os,lobos],[]).
+sentence(X,['A',noticia,correu,pela,cidade],[]).
+sentence(X,['As',lagrimas,corriam,pelo,rosto],[]).
+sentence(X,['o',rio,corre,para,o,mar],[]).
+sentence(X,['A',menina,bateu,a,porta],[]).
+sentence(X,['A',porta,bateu],[]).
+sentence(X,['o',vento,bateu,a,porta],[]).
+sentence(X,['A',menina,bateu,na,porta],[]).
+sentence(X,['o',martelo,bateu,na,porta],[]).
+sentence(X,['A',menina,bateu,no,cachorro],[]).
+sentence(X,['A',menina,bateu,no,tambor],[]).
+sentence(X,['Os',tambores,bateram],[]).
+sentence(X,['o',sino,bateu],[]).
+sentence(X,['A',menina,corre],[]).
+sentence(X,['A',vida,correu],[]).
+sentence(X,['A',noticia,correu,para,a,floresta],[]).
+sentence(X,['A',vida,correu,com,os,lobos],[]).
+sentence(X,['A',menina,bateu,a,mae],[]).
+
+EXAMPLES OF INCORRECT PHRASES
+sentence(X,['A',tempo,corre],[]).
+sentence(X,['o',tempo,correram],[]).
+sentence(X,['A',cacador,corriam,pela,rosto],[]).
+sentence(X,['A',tambores,correu,pela,floresta],[]).
+sentence(X,['Os',tambores,bateu,na,porta],[]).
+sentence(X,['o',sino,bateu,na,meninas],[]).
+
+
+Para executar o programa do exercício das gramáticas em Haskell:
+ghci grammar.hs
+
+O input deverá ter o seguinte formato, antecidido de evaluate para ver se a frase é válida
+e antecidido de parse para obter a composição sintática da frase.
+
+["A","menina","corre","para","a","floresta"]
+["A","menina","corre","para","a","mae"]
+["A","vida","corre"]
+["o","tempo","corre"]
+["o","cacador","correu","com","os","lobos"]
+["A","noticia","correu","pela","cidade"]
+["As","lagrimas","corriam","pelo","rosto"]
+["o","rio","corre","para","o","mar"]
+["A","menina","bateu","a","porta"]
+["A","porta","bateu"]
+["o","vento","bateu","a","porta"]
+["A","menina","bateu","na","porta"]
+["o","martelo","bateu","na","porta"]
+["A","menina","bateu","no","cachorro"]
+["A","menina","bateu","no","tambor"]
+["Os","tambores","bateram"]
+["o","sino","bateu"]
+["A","menina","corre"]
+["A","vida","correu"]
+["A","noticia","correu","para","a","floresta"]
+["A","vida","correu","com","os","lobos"]
+["A","menina","bateu","a","mae"]
+
+EXAMPLES OF INCORRECT PHRASES
+["A","tempo","corre"]
+["o","tempo","correram"]
+["A","cacador","corriam","pela","rosto"]
+["A","tambores","correu","pela","floresta"]
+["Os","tambores","bateu","na","porta"]
+["o","sino","bateu","na","meninas"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+O trabalho foi feito na seguinte máquina:
+
+                          ./+o+-       guilherme29@kraken
+                  yyyyy- -yyyyyy+      OS: Ubuntu 16.04 xenial
+               ://+//////-yyyyyyo      Kernel: x86_64 Linux 4.13.0-38-generic
+           .++ .:/++++++/-.+sss/`      Uptime: 1h 53m
+         .:++o:  /++++++++/:--:/-      Packages: 2263
+        o:+o+:++.`..```.-/oo+++++/     Shell: bash 4.3.48
+       .:+o:+o/.          `+sssoo+/    Resolution: 1920x1080
+  .++/+:+oo+o:`             /sssooo.   DE: KDE5
+ /+++//+:`oo+o               /::--:.   WM: KWin
+ \+/+o+++`o++o               ++////.   GTK Theme: Breeze [GTK3]
+  .++.o+++oo+:`             /dddhhh.   CPU: Intel Core i7-7700HQ CPU @ 3.8GHz
+       .+.o+oo:.          `oddhhhh+    RAM: 2028MiB / 7862MiB
+        \+.++o+o``-````.:ohdhhhhh+    
+         `:o+++ `ohhhhhhhhyo++os:     
+           .o:`.syhhhhhhh/.oo++o`     
+               /osyyyyyyo++ooo+++/    
+                   ````` +oo+++o\:    
+                          `oo++.      
+
+
+Para executar o programa em haskell:
+The Glorious Glasgow Haskell Compilation System, version 7.10.3
+
+
+Para executar o programa em java:
+openjdk version "1.8.0_162"
+OpenJDK Runtime Environment (build 1.8.0_162-8u162-b12-0ubuntu0.16.04.2-b12)
+OpenJDK 64-Bit Server VM (build 25.162-b12, mixed mode)
+
+
+Para executar o programa em PROLOG:
+SWI-Prolog version 7.2.3 for amd64
