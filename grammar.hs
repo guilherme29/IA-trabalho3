@@ -100,10 +100,7 @@ evaluate2 (Sentence6 x1 x2 x3 x4 x5 x6)
     ||(evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetf_p x5 && isNounf_p x6)
     ||(evaluate2(Sentence3 x1 x2 x3) && isProp x4 && isDetm_p x5 && isNounm_p x6)
 
---função principal, que faz(um bocado mal) o que é pedido no enunciado
---trabalho3 :: [String] -> Bool
-trabalho3 xs    | evaluate xs = parse xs
-
+    
 --parses
 --parse para Det e Conj junto(função auxiliar)
 parseDC :: String -> Palavra
