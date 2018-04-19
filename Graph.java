@@ -10,8 +10,8 @@ class Graph{
     Graph(int n){
         nvs = n;
         narcs = 0;
-        verts = new Node[n+1];
-        for(int i=0;i<=n;i++){
+        verts = new Node[n];
+        for(int i=0;i<n;i++){
             verts[i] = new Node();
         }
     }
@@ -62,7 +62,7 @@ class Arc implements Comparable<Arc>{
     Arc(int endNode, int departure, int flightTime, String flightNum){
         this.endNode = endNode;
         this.departure = departure;
-        this.flightTime = flightTime+40;
+        this.flightTime = flightTime + 40;
         this.flightNum = flightNum;
     }
 
