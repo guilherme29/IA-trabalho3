@@ -10,12 +10,12 @@ class Flight{
         }
         System.out.println("Lista dos voos diretos entre: " + Cities.getCity(sourceNode) + " -> " + Cities.getCity(endNode));
         for(Arc flight : flightList){
-            printFlight(sourceNode,flight);
+            printFlight(flight);
         }
     }
 
-    public static void printFlight(int sourceNode, Arc flight){
-        System.out.println(Cities.getCity(sourceNode) + " -> " + Cities.getCity(flight.endNode));
+    public static void printFlight(Arc flight){
+        System.out.println(Cities.getCity(flight.sourceNode) + " -> " + Cities.getCity(flight.endNode));
         System.out.println("Departure: " + Time.getTime(flight.getDeparture()));
         System.out.println("Arrival: " + Time.getTime(flight.getDeparture() + flight.getFlightTime() - 40));
         System.out.println("Flight num: " + flight.getFlightNum());
@@ -41,8 +41,26 @@ class Flight{
                     map.verts[arc.endNode].distance = v.distance + arc.getFlightTime();
                     pai[endNode] = v.getCityNum();
                     paiPath[endNode] = arc;
+                    queue.add(map.verts[endNode]);//expande-se o nó
                 }
             }
         }
+        LinkedList<Arc> trip = new LinkedList<>();
+        trip.addFirst(paiPath[endNode]);
+        while(trip.peek().sourceNode != sourceNode){
+            trip.addFirst(paiPath[trip.peek().sourceNode]);
+        }
+        for(Arc flight : trip){
+            printFlight(flight);
+        }
+        System.out.println("HEY");
+        printFlight(paiPath[3]);
+        printFlight(paiPath[4]);
+
     }
+
+    public static void printPath(int[] pai, Arc[] paiPath, int sourceNode, int endNode){
+
+    }
+
 }
