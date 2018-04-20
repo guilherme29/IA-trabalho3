@@ -52,13 +52,14 @@ class Graph{
         return arcList;
     }
 
-    Arc findArcDay(int i, int j, String day){
+    LinkedList<Arc> findAllArcsDay(int i, int j, String day){
+        LinkedList<Arc> arcList = new LinkedList<>();
         for(Arc adj : adjsNode(i)){
             if(adj.getEndNode() == j && Time.dayOfWeek(adj.flightTime).equals(day)){
-                return adj;
+                arcList.addFirst();
             }
         }
-        return null;
+        return arcList;
     }
 }
 
