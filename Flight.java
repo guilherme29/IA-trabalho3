@@ -36,6 +36,8 @@ class Flight{
         while(!queue.isEmpty()){
             Node v = queue.remove();
             for(Arc arc : v.adjs){
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>" + v.city +" ");
+                printFlight(arc);
                 if(v.distance + arc.getFlightTime() < map.verts[arc.endNode].distance && v.distance  <= arc.getDeparture() ){
                     //faz-se apenas se o voo ainda não aconteceu.
                     map.verts[arc.endNode].distance = v.distance + arc.getFlightTime();
@@ -47,20 +49,43 @@ class Flight{
         }
         LinkedList<Arc> trip = new LinkedList<>();
         trip.addFirst(paiPath[endNode]);
+        /*
         while(trip.peek().sourceNode != sourceNode){
             trip.addFirst(paiPath[trip.peek().sourceNode]);
         }
         for(Arc flight : trip){
             printFlight(flight);
         }
-        System.out.println("HEY");
-        printFlight(paiPath[3]);
-        printFlight(paiPath[4]);
+        */
 
     }
 
-    public static void printPath(int[] pai, Arc[] paiPath, int sourceNode, int endNode){
-
+    public static void allPathFlight(int source, int nodeA, int nodeB, int nodeC, Graph map){
+        PathFlight(source, nodeA, nodeB, nodeC, map);
+        PathFlight(source, nodeA, nodeC, nodeB, map);
+        PathFlight(source, nodeB, nodeA, nodeC, map);
+        PathFlight(source, nodeB, nodeC, nodeA, map);
+        PathFlight(source, nodeC, nodeA, nodeB, map);
+        PathFlight(source, nodeC, nodeB, nodeA, map);
     }
 
+    public static void PathFlight(int source, int nodeA, int nodeB, int nodeC, Graph map){
+        LinkedList<Arc> flights1 = map.findAllArcsDay(source, nodeA, "tu");
+        LinkedList<Arc> flights2 = map.findAllArcsDay(nodeA, nodeB, "we");
+        LinkedList<Arc> flights3 = map.findAllArcsDay(nodeB, nodeC, "th");
+        LinkedList<Arc> flights4 = map.findAllArcsDay(nodeC, source, "fr");
+        for(Arc a : flights1){
+            for(Arc b : flights2){
+                for(Arc c : flights3){
+                    for(Arc d : flights4){
+                        System.out.println("-------------Rota:-------------");
+                        printFlight(a);
+                        printFlight(b);
+                        printFlight(c);
+                        printFlight(d);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -56,7 +56,7 @@ class Graph{
         LinkedList<Arc> arcList = new LinkedList<>();
         for(Arc adj : adjsNode(i)){
             if(adj.getEndNode() == j && Time.dayOfWeek(adj.flightTime).equals(day)){
-                arcList.addFirst();
+                arcList.addFirst(adj);
             }
         }
         return arcList;
