@@ -51,6 +51,15 @@ class Graph{
         }
         return arcList;
     }
+
+    Arc findArcDay(int i, int j, String day){
+        for(Arc adj : adjsNode(i)){
+            if(adj.getEndNode() == j && Time.dayOfWeek(adj.flightTime).equals(day)){
+                return adj;
+            }
+        }
+        return null;
+    }
 }
 
 class Arc implements Comparable<Arc>{
