@@ -26,15 +26,7 @@ class Time{
             case 4: return "fr";
             case 5: return "sa";
             case 6: return "su";
-            case 7: return "mo";
-            case 8: return "tu";
-            case 9: return "we";
-            case 10: return "th";
-            case 11: return "fr";
-            case 12: return "sa";
-            case 13: return "su";
             default: return "ERRO";
         }
-
     }
 }
