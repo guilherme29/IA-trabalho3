@@ -1,4 +1,4 @@
-# Artificial intelligence third assignment
+# Artificial intelligence class third assignment
 
 The description of the assignment is in the pdf file.
 
